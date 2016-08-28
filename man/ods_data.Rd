@@ -6,10 +6,11 @@
 \title{Data example for analyzing the primary response in ODS design}
 \format{A matrix with 400 rows and 5 columns. The first 200 observations are
   from the simple random sample, while 2 supplemental samples each with size
-  100 are taken from lower (Y1 < 0.162) and upper tail of Y1 (Y1 > 2.59):
-  \describe{ \item{Y1}{primary outcome for which the ODS sampling scheme is
-  based on} \item{X}{expensive exposure} \item{Z1}{a simulated covariate}
-  \item{Z2}{a simulated covariate} \item{Z3}{a simulated covariate} }}
+  100 are taken from one standard deviation above the mean and below the
+  mean, i.e. (Y1 < 0.162) and (Y1 > 2.59). \describe{ \item{Y1}{primary
+  outcome for which the ODS sampling scheme is based on} \item{X}{expensive
+  exposure} \item{Z1}{a simulated covariate} \item{Z2}{a simulated covariate}
+  \item{Z3}{a simulated covariate} }}
 \source{
 A simulated data set
 }
