@@ -19,8 +19,8 @@ Description: Outcome-dependent sampling (ODS) schemes are cost-effective ways to
     enhance study efficiency. In ODS designs, one observes the exposure/covariates
     with a probability that depends on the outcome variable. Popular ODS designs
     include case-control for binary outcome, case-cohort for time-to-event outcome,
-    and continuous outcome ODS design (Zhou et al. 2002). Because ODS data has biased 
-    sampling nature, standard statistical analysis such as linear regression will lead 
+    and continuous outcome ODS design (Zhou et al. 2002). Because ODS data has biased
+    sampling nature, standard statistical analysis such as linear regression will lead
     to biases estimates of the population parameters. This package implements
     two statistical methods related to ODS designs: (1) An empirical likelihood method
     analyzing the primary continuous outcome with respect to exposure variables in
@@ -31,6 +31,7 @@ License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1
-Imports: cubature (>= 1.1-2)
+Imports: cubature (>= 1.1-2),
+    stats (>= 3.2.3)
 URL: https://github.com/Yinghao-Pan/ODS
 BugReports: https://github.com/Yinghao-Pan/ODS/issues

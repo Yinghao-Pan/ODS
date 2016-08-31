@@ -125,7 +125,7 @@ pI3_t2 <- function(y,D,theta0,sig0_sq0,Qh) {
 
   mu_yx = D %*% theta0
   var_yx = sig0_sq0
-  f_yx = dnorm(y,mu_yx,var_yx^0.5)
+  f_yx = stats::dnorm(y,mu_yx,var_yx^0.5)
   I3_t2 = 1/sig0_sq0 * t(D) %*% diag(as.vector(f_yx)/as.vector(Qh), nrow=length(Qh)) %*% (y-D %*% theta0)
   return (I3_t2)
 }
@@ -134,7 +134,7 @@ pI3_t2s <- function(y,D,theta0,sig0_sq0,Qh) {
 
   mu_yx = D %*% theta0
   var_yx = sig0_sq0
-  f_yx = dnorm(y,mu_yx,var_yx^0.5)
+  f_yx = stats::dnorm(y,mu_yx,var_yx^0.5)
   I3_t2 = ((y-mu_yx)^2/sig0_sq0-1)*f_yx/Qh
   return (I3_t2)
 }
@@ -143,7 +143,7 @@ pI3_t3s <- function(y,D,theta0,sig0_sq0,Qh) {
 
   mu_yx = D %*% theta0
   var_yx = sig0_sq0
-  f_yx = dnorm(y,mu_yx,var_yx^0.5)
+  f_yx = stats::dnorm(y,mu_yx,var_yx^0.5)
   I3_t2 = (-((y-mu_yx)^2/sig0_sq0^2)+((y-mu_yx)^2/sig0_sq0-1)^2/(2*sig0_sq0))*f_yx/Qh
   return (I3_t2)
 }
@@ -152,7 +152,7 @@ pI3_t22 <- function(y,D,theta0,sig0_sq0,Qh) {
 
   mu_yx = D %*% theta0
   var_yx = sig0_sq0
-  f_yx = dnorm(y,mu_yx,var_yx^0.5)
+  f_yx = stats::dnorm(y,mu_yx,var_yx^0.5)
   I3_t2 = (-1/sig0_sq0*f_yx+1/(sig0_sq0^2)*(f_yx)*(y-D %*% theta0)^2)/Qh
   return (I3_t2)
 }
@@ -161,7 +161,7 @@ pI3_t33 <- function(y,D,theta0,sig0_sq0,Qh) {
 
   mu_yx = D %*% theta0
   var_yx = sig0_sq0
-  f_yx = dnorm(y,mu_yx,var_yx^0.5)
+  f_yx = stats::dnorm(y,mu_yx,var_yx^0.5)
   I3_t2 = 1/sig0_sq0 * diag(as.vector(f_yx)/as.vector(Qh), nrow=length(Qh)) %*% (y-D %*% theta0)
   return (I3_t2)
 }
@@ -279,8 +279,8 @@ gcv_ODS <- function(X,Y,Z,n_f,eta,q_s,Cpt,mu_Y,sig_Y,degree,nknots) {
   I11 = -1/sig0_sq0*t(D) %*% D
   mu_yx = D %*% theta0
   var_yx = sig0_sq0
-  psi1 = pnorm(up1,mu_yx,var_yx^0.5)-pnorm(low1,mu_yx,var_yx^0.5)
-  psi2 = pnorm(up2,mu_yx,var_yx^0.5)-pnorm(low2,mu_yx,var_yx^0.5)
+  psi1 = stats::pnorm(up1,mu_yx,var_yx^0.5)-stats::pnorm(low1,mu_yx,var_yx^0.5)
+  psi2 = stats::pnorm(up2,mu_yx,var_yx^0.5)-stats::pnorm(low2,mu_yx,var_yx^0.5)
   Qh = n0/n+ (n1/(n*pi0[1]))*psi1+(n2/(n*pi0[2]))*psi2
   psi1_f = cubature::adaptIntegrate(pI3_t2, low1, up1, D=D, theta0=theta0, sig0_sq0=sig0_sq0, Qh=Qh, fDim=dim(D)[2])$integral
   psi2_f = cubature::adaptIntegrate(pI3_t2, low2, up2, D=D, theta0=theta0, sig0_sq0=sig0_sq0, Qh=Qh, fDim=dim(D)[2])$integral
@@ -301,10 +301,10 @@ gcv_ODS <- function(X,Y,Z,n_f,eta,q_s,Cpt,mu_Y,sig_Y,degree,nknots) {
 
   mu_yx = D %*% theta0
   var_yx = sig0_sq0
-  psi1 = pnorm(up1,mu_yx,var_yx^0.5)-pnorm(low1,mu_yx,var_yx^0.5)
-  psi2 = pnorm(up2,mu_yx,var_yx^0.5)-pnorm(low2,mu_yx,var_yx^0.5)
+  psi1 = stats::pnorm(up1,mu_yx,var_yx^0.5)-stats::pnorm(low1,mu_yx,var_yx^0.5)
+  psi2 = stats::pnorm(up2,mu_yx,var_yx^0.5)-stats::pnorm(low2,mu_yx,var_yx^0.5)
   Qh = n0/n+ (n1/(n*pi0[1]))*psi1+(n2/(n*pi0[2]))*psi2+v0[1]*(psi1-pi0[1])+v0[2]*(psi2-pi0[2])
-  like_mle = sum(log(dnorm(Y,mu_yx,var_yx^0.5)))-sum(log(Qh))-(n1*log(pi0[1])+n2*log(pi0[2]))
+  like_mle = sum(log(stats::dnorm(Y,mu_yx,var_yx^0.5)))-sum(log(Qh))-(n1*log(pi0[1])+n2*log(pi0[2]))
 
   gcv1 = -1/n*like_mle/(1-1/n*sum(diag(solve(V,(I11+I22)))))^2
 
@@ -459,8 +459,8 @@ Estimate_PLMODS <- function(X,Y,Z,n_f,eta00,q_s,Cpt,mu_Y,sig_Y,degree,nknots,tol
     I11 = -1/sig0_sq0*t(D) %*% D
     mu_yx = D %*% theta0
     var_yx = sig0_sq0
-    psi1 = pnorm(up1,mu_yx,var_yx^0.5)-pnorm(low1,mu_yx,var_yx^0.5)
-    psi2 = pnorm(up2,mu_yx,var_yx^0.5)-pnorm(low2,mu_yx,var_yx^0.5)
+    psi1 = stats::pnorm(up1,mu_yx,var_yx^0.5)-stats::pnorm(low1,mu_yx,var_yx^0.5)
+    psi2 = stats::pnorm(up2,mu_yx,var_yx^0.5)-stats::pnorm(low2,mu_yx,var_yx^0.5)
     Qh = n0/n+ (n1/(n*pi1[1])+v1[1])*psi1+(n2/(n*pi1[2])+v1[2])*psi2
     psi1_f = cubature::adaptIntegrate(pI3_t2, low1, up1, D=D, theta0=theta0, sig0_sq0=sig0_sq0, Qh=Qh, fDim=dim(D)[2])$integral
     psi2_f = cubature::adaptIntegrate(pI3_t2, low2, up2, D=D, theta0=theta0, sig0_sq0=sig0_sq0, Qh=Qh, fDim=dim(D)[2])$integral
@@ -492,8 +492,8 @@ Estimate_PLMODS <- function(X,Y,Z,n_f,eta00,q_s,Cpt,mu_Y,sig_Y,degree,nknots,tol
     if ((pi0[1])<0 | (pi0[1])>1) {pi0 = pi100}
     mu_yx = D %*% theta1
     var_yx = sig0_sq1
-    psi1 = pnorm(up1,mu_yx,var_yx^0.5)-pnorm(low1,mu_yx,var_yx^0.5)
-    psi2 = pnorm(up2,mu_yx,var_yx^0.5)-pnorm(low2,mu_yx,var_yx^0.5)
+    psi1 = stats::pnorm(up1,mu_yx,var_yx^0.5)-stats::pnorm(low1,mu_yx,var_yx^0.5)
+    psi2 = stats::pnorm(up2,mu_yx,var_yx^0.5)-stats::pnorm(low2,mu_yx,var_yx^0.5)
     K1_2 = n0/n + (n1/(n*pi0[1]))*psi1 + (n2/(n*pi0[2]))*psi2
     K_f = rbind(-n1/pi0[1]+sum((n1/(n*pi0[1]^2)*psi1)/K1_2), -n2/pi0[2]+sum((n2/(n*pi0[2]^2)*psi2)/K1_2))
     K_ff = rbind(cbind(t((n1/(n*pi0[1]^2)*psi1)/K1_2) %*% ((n1/(n*pi0[1]^2)*psi1)/K1_2), t((n1/(n*pi0[1]^2)*psi1)/K1_2) %*% ((n2/(n*pi0[2]^2)*psi2)/K1_2)), cbind(t((n1/(n*pi0[1]^2)*psi1)/K1_2) %*% ((n2/(n*pi0[2]^2)*psi2)/K1_2), t((n2/(n*pi0[2]^2)*psi2)/K1_2) %*% ((n2/(n*pi0[2]^2)*psi2)/K1_2)))
@@ -503,8 +503,8 @@ Estimate_PLMODS <- function(X,Y,Z,n_f,eta00,q_s,Cpt,mu_Y,sig_Y,degree,nknots,tol
     pi1 = pi0 - solve(SC2_pi, SC1_pi)
     v0 = v1
     if (abs(v0[1])>0.5 | abs(v0[2])>0.5) {v0 = matrix(0,2,1)}
-    psi1 = pnorm(up1,mu_yx,var_yx^0.5)-pnorm(low1,mu_yx,var_yx^0.5)
-    psi2 = pnorm(up2,mu_yx,var_yx^0.5)-pnorm(low2,mu_yx,var_yx^0.5)
+    psi1 = stats::pnorm(up1,mu_yx,var_yx^0.5)-stats::pnorm(low1,mu_yx,var_yx^0.5)
+    psi2 = stats::pnorm(up2,mu_yx,var_yx^0.5)-stats::pnorm(low2,mu_yx,var_yx^0.5)
     L1_2 = n0/n+ (n1/(n*pi1[1])+v0[1])*psi1+(n2/(n*pi1[2])+v0[2])*psi2
     L_f = -rbind(sum(((psi1-pi1[1]))/L1_2), sum(((psi2-pi1[2]))/L1_2))
     L_s = rbind(cbind(sum(((psi1-pi1[1])/L1_2)^2), sum(((psi1-pi1[1])/L1_2)*(((psi2-pi1[2]))/L1_2))), cbind(sum(((psi1-pi1[1])/L1_2)*(((psi2-pi1[2]))/L1_2)), sum(((psi2-pi1[2])/L1_2)^2)))

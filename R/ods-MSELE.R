@@ -63,7 +63,7 @@ cond.cdf <- function(x, beta, sig, a)
 
   for (j in 1:nstrata)
   {
-    probs[,j] <- pnorm(Z[,j+1])-pnorm(Z[,j])
+    probs[,j] <- stats::pnorm(Z[,j+1])-stats::pnorm(Z[,j])
   }
   probs
 }
