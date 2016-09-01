@@ -79,10 +79,10 @@ n_f = c(200, 100, 100)
 Cpt = 1
 
 # GCV selection to find the optimal smoothing parameter #
-q_s1 = logspace(-6, 7, 30)
-gcv1 = rep(0, 30)
+q_s1 = logspace(-6, 7, 10)
+gcv1 = rep(0, 10)
 
-for (j in 1:30) {
+for (j in 1:10) {
 
   result = Estimate_PLMODS(X,Y,Z,n_f,eta00,q_s1[j],Cpt,mu_Y,sig_Y)
   etajj = matrix(c(result$alpha, result$gam, result$pi0, result$v0, result$sig0_sq0), ncol=1)
@@ -92,7 +92,10 @@ for (j in 1:30) {
 b = which(gcv1 == min(gcv1))
 q_s = q_s1[b]
 
+q_s
+
 # Estimation of the partial linear model in the setting of outcome-dependent sampling #
 result = Estimate_PLMODS(X, Y, Z, n_f, eta00, q_s, Cpt, mu_Y, sig_Y)
+result
 }
 
