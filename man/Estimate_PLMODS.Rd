@@ -4,8 +4,8 @@
 \alias{Estimate_PLMODS}
 \title{Partial linear model for ODS data}
 \usage{
-Estimate_PLMODS(X, Y, Z, n_f, eta00, q_s, Cpt, mu_Y, sig_Y, degree, nknots, tol,
-  iter)
+Estimate_PLMODS(X, Y, Z, n_f, eta00, q_s, Cpt, mu_Y, sig_Y, degree, nknots,
+  tol, iter)
 }
 \arguments{
 \item{X}{n by 1 matrix of the observed exposure variable}
@@ -121,4 +121,3 @@ q_s
 result = Estimate_PLMODS(X, Y, Z, n_f, eta00, q_s, Cpt, mu_Y, sig_Y)
 result
 }
-

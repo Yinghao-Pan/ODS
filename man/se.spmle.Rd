@@ -94,4 +94,3 @@ row.names(ODS.results) <- c("(Intercept)","X","Z1","Z2","Z3")
 
 ODS.results
 }
-

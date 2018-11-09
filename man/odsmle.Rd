@@ -82,4 +82,3 @@ strat <- c(1,2,3)
 
 odsmle(Y,X,beta,sig,pis,a,rs.size,size,strat)
 }
-

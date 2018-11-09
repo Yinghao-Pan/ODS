@@ -98,4 +98,3 @@ q_s
 result = Estimate_PLMODS(X, Y, Z, n_f, eta00, q_s, Cpt, mu_Y, sig_Y)
 result
 }
-

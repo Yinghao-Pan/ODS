@@ -24,4 +24,3 @@ matlab.
 \examples{
 logspace(-6,7,30)
 }
-

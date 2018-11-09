@@ -22,4 +22,3 @@ Data example for analyzing the primary response in ODS design (zhou et al.
 2002)
 }
 \keyword{datasets}
-

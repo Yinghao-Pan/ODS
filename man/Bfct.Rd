@@ -31,4 +31,3 @@ knots <- c(1,3,4)
 
 Bfct(x, degree, knots)
 }
-
