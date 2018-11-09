@@ -1,9 +1,9 @@
 Package: ODS
 Type: Package
 Title: Statistical Methods for Outcome-Dependent Sampling Designs
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(person("Yinghao", "Pan", role = c("aut", "cre"),
-                     email = "yypan@email.unc.edu"),
+                     email = "ypan8@uncc.edu"),
              person("Haibo", "Zhou", role = "aut",
                      email = "zhou@bios.unc.edu"),
              person("Mark", "Weaver", role = "aut"),
@@ -14,7 +14,7 @@ Author: Yinghao Pan [aut, cre],
   Mark Weaver [aut],
   Guoyou Qin [aut],
   Jianwen Cai [aut]
-Maintainer: Yinghao Pan <yypan@email.unc.edu>
+Maintainer: Yinghao Pan <ypan8@uncc.edu>
 Description: Outcome-dependent sampling (ODS) schemes are cost-effective ways to
     enhance study efficiency. In ODS designs, one observes the exposure/covariates
     with a probability that depends on the outcome variable. Popular ODS designs
@@ -22,16 +22,20 @@ Description: Outcome-dependent sampling (ODS) schemes are cost-effective ways to
     and continuous outcome ODS design (Zhou et al. 2002). Because ODS data has biased
     sampling nature, standard statistical analysis such as linear regression will lead
     to biases estimates of the population parameters. This package implements
-    two statistical methods related to ODS designs: (1) An empirical likelihood method
+    four statistical methods related to ODS designs: (1) An empirical likelihood method
     analyzing the primary continuous outcome with respect to exposure variables in
     continuous ODS design (Zhou et al., 2002). (2) A partial linear model
     analyzing the primary outcome in continuous ODS design (Zhou, Qin and Longnecker, 2011).
+    (3) Analyze a secondary outcome in continuous ODS design (Pan et al. 2018). (4) An estimated likelihood
+    method analyzing a secondary outcome in case-cohort data (Pan et al. 2017).
 Depends: R (>= 3.2.3)
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
 Imports: cubature (>= 1.1-2),
+    survival (>= 2.38-3),
+    utils,
     stats
 URL: https://github.com/Yinghao-Pan/ODS
 BugReports: https://github.com/Yinghao-Pan/ODS/issues
