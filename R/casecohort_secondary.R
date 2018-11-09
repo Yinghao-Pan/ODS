@@ -63,6 +63,7 @@ rep_row <- function(x,n) {
 #'   the secondary outcome model} \item{beta_stdErr}{estimated standard error
 #'   for beta in the secondary outcome model}
 #' @examples
+#' \donttest{
 #' library(ODS)
 #' # take the example data from the ODS package
 #' # please see the documentation for details about the data set casecohort_data_secondary
@@ -80,6 +81,7 @@ rep_row <- function(x,n) {
 #' Z2.dim <- 3
 #' Z3.dim <- 3
 #' secondary_casecohort(SRS, CCH, NVsample, Z1.dim, Z2.dim, Z3.dim)
+#' }
 
 secondary_casecohort <- function(SRS, CCH, NVsample, Z1.dim, Z2.dim, Z3.dim) {
 

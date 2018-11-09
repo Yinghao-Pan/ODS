@@ -192,6 +192,7 @@ pI3_t33 <- function(y,D,theta0,sig0_sq0,Qh) {
 #'   value is 10
 #' @return the value of generalized cross-validation score
 #' @examples
+#' \donttest{
 #' library(ODS)
 #' # take the example data from the ODS package
 #' # please see the documentation for details about the data set ods_data
@@ -245,6 +246,7 @@ pI3_t33 <- function(y,D,theta0,sig0_sq0,Qh) {
 #' # Estimation of the partial linear model in the setting of outcome-dependent sampling #
 #' result = Estimate_PLMODS(X, Y, Z, n_f, eta00, q_s, Cpt, mu_Y, sig_Y)
 #' result
+#' }
 
 gcv_ODS <- function(X,Y,Z,n_f,eta,q_s,Cpt,mu_Y,sig_Y,degree,nknots) {
 
@@ -360,6 +362,7 @@ gcv_ODS <- function(X,Y,Z,n_f,eta,q_s,Cpt,mu_Y,sig_Y,degree,nknots) {
 #'   \item{pi0}{estimated notation pi} \item{v0}{estimated notation vtheta}
 #'   \item{sig0_sq0}{estimated variance of error}
 #' @examples
+#' \donttest{
 #' library(ODS)
 #' # take the example data from the ODS package
 #' # please see the documentation for details about the data set ods_data
@@ -412,6 +415,7 @@ gcv_ODS <- function(X,Y,Z,n_f,eta,q_s,Cpt,mu_Y,sig_Y,degree,nknots) {
 #' # Estimation of the partial linear model in the setting of outcome-dependent sampling #
 #' result = Estimate_PLMODS(X, Y, Z, n_f, eta00, q_s, Cpt, mu_Y, sig_Y)
 #' result
+#' }
 
 Estimate_PLMODS <- function(X,Y,Z,n_f,eta00,q_s,Cpt,mu_Y,sig_Y,degree,nknots,tol,iter) {
 

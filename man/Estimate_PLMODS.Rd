@@ -68,6 +68,7 @@ and Longnecker (2011) describes a semiparametric empirical likelihood
 estimator for estimating the parameters in the partial linear model.
 }
 \examples{
+\donttest{
 library(ODS)
 # take the example data from the ODS package
 # please see the documentation for details about the data set ods_data
@@ -120,4 +121,5 @@ q_s
 # Estimation of the partial linear model in the setting of outcome-dependent sampling #
 result = Estimate_PLMODS(X, Y, Z, n_f, eta00, q_s, Cpt, mu_Y, sig_Y)
 result
+}
 }

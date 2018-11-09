@@ -55,6 +55,7 @@ the association between a continuous secondary outcome and the expensive
 exposure for case-cohort data.
 }
 \examples{
+\donttest{
 library(ODS)
 # take the example data from the ODS package
 # please see the documentation for details about the data set casecohort_data_secondary
@@ -72,4 +73,5 @@ Z1.dim <- 4
 Z2.dim <- 3
 Z3.dim <- 3
 secondary_casecohort(SRS, CCH, NVsample, Z1.dim, Z2.dim, Z3.dim)
+}
 }

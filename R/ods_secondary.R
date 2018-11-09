@@ -29,8 +29,8 @@ secondary_ODS_score <- function(y1,y2,x,z,beta0,beta1,beta2,gamma0,gamma1,gamma2
   Qinverse12 <- Qinverse[1,2]
   Qinverse21 <- Qinverse[2,1]
   Qinverse22 <- Qinverse[2,2]
-  residual1 <- r/weight*(y1-beta0-beta1*x-z%*%beta2)
-  residual2 <- r/weight*(y2-gamma0-gamma1*x-z%*%gamma2)
+  residual1 <- as.vector(r/weight*(y1-beta0-beta1*x-z%*%beta2))
+  residual2 <- as.vector(r/weight*(y2-gamma0-gamma1*x-z%*%gamma2))
   residual <- matrix(c(residual1,residual2),nrow=2)
   if (r==0) {
     matrix1 <- matrix(0, nrow=2*(2+Z.dim))
@@ -38,14 +38,14 @@ secondary_ODS_score <- function(y1,y2,x,z,beta0,beta1,beta2,gamma0,gamma1,gamma2
     matrix1 <- t(D)%*%solve(Q)%*%residual
   }
 
-  expectationX <- phi0+phi1*y1+phi2*y2+z%*%phi3
+  expectationX <- as.vector(phi0+phi1*y1+phi2*y2+z%*%phi3)
   expectationXsquare <- varestimate + expectationX^2
   expectationU1 <- Qinverse11*(y1-beta0-beta1*expectationX-z%*%beta2)+Qinverse12*(y2-gamma0-gamma1*expectationX-z%*%gamma2)
   expectationU2 <- Qinverse21*(y1-beta0-beta1*expectationX-z%*%beta2)+Qinverse22*(y2-gamma0-gamma1*expectationX-z%*%gamma2)
   expectationxU1 <- (Qinverse11*(y1-beta0-z%*%beta2)+Qinverse12*(y2-gamma0-z%*%gamma2))*expectationX-(beta1*Qinverse11+gamma1*Qinverse12)*expectationXsquare
   expectationxU2 <- (Qinverse21*(y1-beta0-z%*%beta2)+Qinverse22*(y2-gamma0-z%*%gamma2))*expectationX-(beta1*Qinverse21+gamma1*Qinverse22)*expectationXsquare
 
-  vector <- (1-r/weight)*c(expectationU1, expectationxU1, z*expectationU1, expectationU2, expectationxU2, z*expectationU2)
+  vector <- (1-r/weight)*c(expectationU1, expectationxU1, z*as.vector(expectationU1), expectationU2, expectationxU2, z*as.vector(expectationU2))
   matrix2 <- matrix(vector,nrow=4+2*Z.dim)
 
   answer <- matrix1 + matrix2
